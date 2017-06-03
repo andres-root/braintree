@@ -16,12 +16,16 @@ def client_token():
 
 @app.route("/checkout", methods=["POST"])
 def create_purchase():
-      nonce_from_the_client = request.form["payment_method_nonce"]
-      pass
-      # result = core.braintree.Transaction.sale({
-
-      #   })
+    # nonce_from_the_client = request.form["payment_method_nonce"]
+    result = core.braintree.Transaction.sale({
+        'amount': '10.00',
+        'payment_method_nonce': 'fake-valid-nonce',
+        'options': {
+            'submit_for_settlement': True
+        }
+    })
+    return result
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0:5000')
+    app.run(host='0.0.0.0')
