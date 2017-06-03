@@ -14,5 +14,14 @@ def client_token():
     return core.braintree.ClientToken.generate()
 
 
+@app.route("/checkout", methods=["POST"])
+def create_purchase():
+      nonce_from_the_client = request.form["payment_method_nonce"]
+      pass
+      # result = core.braintree.Transaction.sale({
+
+      #   })
+
+
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0:5000')
